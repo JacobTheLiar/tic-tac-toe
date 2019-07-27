@@ -21,7 +21,7 @@ public class TicTacToeButton extends Button {
 
         this.setGraphic(NONE_IMG);
 
-        this.setOnMouseClicked(event -> {
+        this.setOnAction(event -> {
             game.setMove(buttonTag);
             refresh.refreshControls();});
     }
@@ -38,6 +38,11 @@ public class TicTacToeButton extends Button {
 
 
 
+    public void tryExecute(int index){
+        if (index == buttonTag){
+            this.fire();
+        }
+    }
 
     public void setState(){
         if (!this.getGraphic().equals(getStateImage()))
@@ -55,4 +60,5 @@ public class TicTacToeButton extends Button {
         }
         return NONE_IMG;
     }
+    
 }

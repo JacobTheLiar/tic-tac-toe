@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 import pl.jacob_the_liar.tic_tac_toe.console.ConsoleGame;
 import pl.jacob_the_liar.tic_tac_toe.player_move.HumanPlayerMove;
+import pl.jacob_the_liar.tic_tac_toe.player_move.PlayerMove;
 import pl.jacob_the_liar.tic_tac_toe.player_move.RandomPlayerMove;
 import pl.jacob_the_liar.tic_tac_toe.windowed.WindowedGame;
 
@@ -11,7 +12,10 @@ import pl.jacob_the_liar.tic_tac_toe.windowed.WindowedGame;
 import java.util.Scanner;
 
 public class App extends Application {
-
+    
+    public static PlayerMove circlePlayer;
+    public static PlayerMove crossPlayer;
+    
     public static void main( String[] args )
     {
 
@@ -28,6 +32,10 @@ public class App extends Application {
         System.out.println("\t4 - tekstowy komputer kontra komputer");
         System.out.println();
         System.out.println("\t5 - okienkowy człowiek kontra człowiek");
+        System.out.println("\t6 - okienkowy człowiek kontra komputer słaby");
+        System.out.println("\t7 - okienkowy człowiek kontra komputer lepszy");
+        System.out.println();
+        System.out.println("\t8 - okienkowy komputer kontra komputer");
         System.out.println();
         System.out.println();
         System.out.println("\t0 - wyjście");
@@ -41,37 +49,42 @@ public class App extends Application {
                 correctSelect = scanner.nextInt();
 
 
-        } while (!(0<=correctSelect && correctSelect<=5));
-
-
-        switch ( correctSelect){
+        } while (!(0<=correctSelect && correctSelect<=8));
     
-            case 1:
-                new ConsoleGame(new HumanPlayerMove(), new HumanPlayerMove()).start();
-                System.exit(1);
+        circlePlayer = new HumanPlayerMove();
+        crossPlayer = new HumanPlayerMove();
+        
+        
+        switch (correctSelect%4){
+    
+            case 0:
+                circlePlayer = new RandomPlayerMove();
+                crossPlayer = new RandomPlayerMove();
                 break;
             case 2:
-                new ConsoleGame(new HumanPlayerMove(), new RandomPlayerMove()).start();
-                System.exit(1);
+                crossPlayer = new RandomPlayerMove();
                 break;
-            case 4:
-                new ConsoleGame(new RandomPlayerMove(), new RandomPlayerMove()).start();
-                System.exit(1);
-                break;
-            case 5:
-                Application.launch(args);
+            case 3:
+                crossPlayer = new RandomPlayerMove();;
                 break;
         }
         
 
+        if (correctSelect<=4){
+            new ConsoleGame(circlePlayer, crossPlayer).start();
+            System.exit(1);
+        } else {
+            Application.launch(args);
+        }
+        
 
 
         System.out.println("pa!");
     }
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
-        WindowedGame windowedGame = new WindowedGame(primaryStage);
+    public void start(Stage primaryStage) {
+        WindowedGame windowedGame = new WindowedGame(primaryStage, circlePlayer, crossPlayer);
         windowedGame.show();
     }
 

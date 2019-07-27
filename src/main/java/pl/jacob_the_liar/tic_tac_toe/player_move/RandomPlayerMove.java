@@ -1,12 +1,7 @@
-/*
- * Copyright (c) 2019.
- */
-
 package pl.jacob_the_liar.tic_tac_toe.player_move;
 
 
 import pl.jacob_the_liar.tic_tac_toe.core.TicTacToe;
-
 
 import java.util.Random;
 
@@ -22,7 +17,8 @@ public class RandomPlayerMove implements PlayerMove{
         Random rnd = new Random();
         do {
             result = rnd.nextInt(9);
-        } while (!game.isAvailableMove(result));
+        }
+        while (!game.isAvailableMove(result));
         
         return result;
     }
