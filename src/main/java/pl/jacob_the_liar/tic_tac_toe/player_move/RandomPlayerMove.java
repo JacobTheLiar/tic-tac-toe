@@ -1,8 +1,12 @@
-package pl.jacob_the_liar.tic_tac_toe;
+/*
+ * Copyright (c) 2019.
+ */
+
+package pl.jacob_the_liar.tic_tac_toe.player_move;
 
 
 import pl.jacob_the_liar.tic_tac_toe.core.TicTacToe;
-import pl.jacob_the_liar.tic_tac_toe.player_move.PlayerMove;
+
 
 import java.util.Random;
 

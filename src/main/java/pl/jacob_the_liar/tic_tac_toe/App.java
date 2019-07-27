@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 import pl.jacob_the_liar.tic_tac_toe.console.ConsoleGame;
 import pl.jacob_the_liar.tic_tac_toe.player_move.HumanPlayerMove;
+import pl.jacob_the_liar.tic_tac_toe.player_move.RandomPlayerMove;
 import pl.jacob_the_liar.tic_tac_toe.windowed.WindowedGame;
 
 
