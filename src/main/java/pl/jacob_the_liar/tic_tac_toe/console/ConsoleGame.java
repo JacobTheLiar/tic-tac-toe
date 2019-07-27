@@ -9,8 +9,8 @@ import static pl.jacob_the_liar.tic_tac_toe.console.BoardPrinter.printBoard;
 import static pl.jacob_the_liar.tic_tac_toe.console.Input.getInt;
 
 
-public class ConsoleGame {
-
+public class ConsoleGame{
+    
     private TicTacToe game;
     
     private PlayerMove circlePlayer;
@@ -23,52 +23,54 @@ public class ConsoleGame {
     }
     
     
-    public void start() {
+    public void start(){
         game = new TicTacToe();
         circlePlayer.setGame(game);
         crossPlayer.setGame(game);
         do {
             gameLoop();
-        } while(!endGame());
+        }
+        while (!endGame());
     }
-
-
-    private void gameLoop() {
+    
+    
+    private void gameLoop(){
         game.startNewGame();
         do {
             printBoard(game);
             int choice = getChoice();
             game.setMove(choice);
-        } while (!game.isEndGame());
+        }
+        while (!game.isEndGame());
         printBoard(game);
     }
-
-
-
-
-    private boolean endGame() {
+    
+    
+    private boolean endGame(){
         int choice;
         do {
             choice = getInt();
-        } while(!(0<=choice && choice<=1));
+        }
+        while (!(0 <= choice && choice <= 1));
         return choice == 0;
     }
-
-
+    
+    
     private int getChoice(){
         int choice;
         do {
-            if (game.getCurrentPlayer()== Player.CIRCLE) {
+            if (game.getCurrentPlayer() == Player.CIRCLE) {
                 choice = circlePlayer.getMove();
             } else {
                 choice = crossPlayer.getMove();
             }
-        } while(!correctChoice(choice) || !game.isAvailableMove(choice));
+        }
+        while (!correctChoice(choice) || !game.isAvailableMove(choice));
         return choice;
     }
-
-
-    private boolean correctChoice(int choice) {
-        return 0<=choice && choice<9;
+    
+    
+    private boolean correctChoice(int choice){
+        return 0 <= choice && choice < 9;
     }
 }

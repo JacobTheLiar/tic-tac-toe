@@ -10,7 +10,6 @@ public class RandomPlayerMove implements PlayerMove{
     
     private TicTacToe game;
     
-    
     @Override
     public int getMove(){
         int result;
