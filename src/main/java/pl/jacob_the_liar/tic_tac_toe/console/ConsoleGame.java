@@ -1,7 +1,9 @@
 package pl.jacob_the_liar.tic_tac_toe.console;
 
 
+import pl.jacob_the_liar.tic_tac_toe.core.Player;
 import pl.jacob_the_liar.tic_tac_toe.core.TicTacToe;
+import pl.jacob_the_liar.tic_tac_toe.player_move.PlayerMove;
 
 import static pl.jacob_the_liar.tic_tac_toe.console.BoardPrinter.printBoard;
 import static pl.jacob_the_liar.tic_tac_toe.console.Input.getInt;
@@ -10,10 +12,21 @@ import static pl.jacob_the_liar.tic_tac_toe.console.Input.getInt;
 public class ConsoleGame {
 
     private TicTacToe game;
-
-
+    
+    private PlayerMove circlePlayer;
+    private PlayerMove crossPlayer;
+    
+    
+    public ConsoleGame(PlayerMove circlePlayer, PlayerMove crossPlayer){
+        this.circlePlayer = circlePlayer;
+        this.crossPlayer = crossPlayer;
+    }
+    
+    
     public void start() {
         game = new TicTacToe();
+        circlePlayer.setGame(game);
+        crossPlayer.setGame(game);
         do {
             gameLoop();
         } while(!endGame());
@@ -45,7 +58,11 @@ public class ConsoleGame {
     private int getChoice(){
         int choice;
         do {
-            choice = getInt();
+            if (game.getCurrentPlayer()== Player.CIRCLE) {
+                choice = circlePlayer.getMove();
+            } else {
+                choice = crossPlayer.getMove();
+            }
         } while(!correctChoice(choice) || !game.isAvailableMove(choice));
         return choice;
     }

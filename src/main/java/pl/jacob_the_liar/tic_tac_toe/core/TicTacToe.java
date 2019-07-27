@@ -1,5 +1,7 @@
 package pl.jacob_the_liar.tic_tac_toe.core;
 
+
+
 public class TicTacToe {
 
 
@@ -14,7 +16,6 @@ public class TicTacToe {
     private int circleWins;
     private int crossWins;
     private int draws;
-
 
     public TicTacToe() {
         board = new Player[9];
@@ -172,4 +173,5 @@ public class TicTacToe {
 
         return result;
     }
+
 }

@@ -3,9 +3,10 @@ package pl.jacob_the_liar.tic_tac_toe;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import pl.jacob_the_liar.tic_tac_toe.console.ConsoleGame;
+import pl.jacob_the_liar.tic_tac_toe.player_move.HumanPlayerMove;
 import pl.jacob_the_liar.tic_tac_toe.windowed.WindowedGame;
 
-import java.net.URL;
+
 import java.util.Scanner;
 
 public class App extends Application {
@@ -19,8 +20,14 @@ public class App extends Application {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("wybierz tryb gry");
-        System.out.println("\t1 - tekstowy");
-        System.out.println("\t2 - okienkowy");
+        System.out.println("\t1 - tekstowy człowiek kontra człowiek");
+        System.out.println("\t2 - tekstowy człowiek kontra komputer słaby");
+        System.out.println("\t3 - tekstowy człowiek kontra komputer lepszy");
+        System.out.println();
+        System.out.println("\t4 - tekstowy komputer kontra komputer");
+        System.out.println();
+        System.out.println("\t5 - okienkowy człowiek kontra człowiek");
+        System.out.println();
         System.out.println();
         System.out.println("\t0 - wyjście");
         System.out.println();
@@ -33,13 +40,28 @@ public class App extends Application {
                 correctSelect = scanner.nextInt();
 
 
-        } while (!(0<=correctSelect && correctSelect<=2));
+        } while (!(0<=correctSelect && correctSelect<=5));
 
 
-        if (correctSelect==1)
-            new ConsoleGame().start();
-        else if (correctSelect==2)
-            Application.launch(args);
+        switch ( correctSelect){
+    
+            case 1:
+                new ConsoleGame(new HumanPlayerMove(), new HumanPlayerMove()).start();
+                System.exit(1);
+                break;
+            case 2:
+                new ConsoleGame(new HumanPlayerMove(), new RandomPlayerMove()).start();
+                System.exit(1);
+                break;
+            case 4:
+                new ConsoleGame(new RandomPlayerMove(), new RandomPlayerMove()).start();
+                System.exit(1);
+                break;
+            case 5:
+                Application.launch(args);
+                break;
+        }
+        
 
 
 
